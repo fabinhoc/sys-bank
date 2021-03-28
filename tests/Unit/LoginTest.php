@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Auth;
+use Tests\Unit\ClientData;
 
 class LoginTest extends TestCase
 {
@@ -18,14 +19,8 @@ class LoginTest extends TestCase
      */
     public function testLogin()
     {
-        $request = [
-            'grant_type' => 'password',
-            'client_id' => 3, // client id frontend application
-            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
-            'username' => 'fabio@gmail.com', // seedered user
-            'password' => 'admin',
-            'scope' => ''
-        ];
+        $clientData = new ClientData();
+        $request = $clientData->getData();
 
         $response = $this->post('/oauth/token', $request);
         $response->assertStatus(200);
@@ -39,14 +34,10 @@ class LoginTest extends TestCase
     public function testAuthenticateAndCreateUser()
     {
         $resource = User::factory()->create()->toArray();
-        $request = [
-            'grant_type' => 'password',
-            'client_id' => 3, // client id frontend application
-            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
-            'username' => $resource['email'], // seedered user
-            'password' => 'admin',
-            'scope' => ''
-        ];
+
+        $clientData = new ClientData();
+        $request = $clientData->getData();
+        $request['username'] = $resource['email'];
 
         $response = $this->post('/oauth/token', $request);
 
@@ -70,14 +61,10 @@ class LoginTest extends TestCase
     public function testAuthenticateNewUser()
     {
         $resource = User::factory()->create()->toArray();
-        $request = [
-            'grant_type' => 'password',
-            'client_id' => 3, // client id frontend application
-            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
-            'username' => $resource['email'], // seedered user
-            'password' => 'admin',
-            'scope' => ''
-        ];
+        
+        $clientData = new ClientData();
+        $request = $clientData->getData();
+        $request['username'] = $resource['email'];
 
         $response = $this->post('/oauth/token', $request);
 

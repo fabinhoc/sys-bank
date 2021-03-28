@@ -6,26 +6,21 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\Unit\ClientData;
 
 class UserTest extends TestCase
 {
     use DatabaseTransactions;
 
     /**
-     * Athenticate user Fabio Cruz
+     * Athenticate user
      *
-     * @return Collection
+     * @return Array
      */
     private function login(): Array
     {
-        $request = [
-            'grant_type' => 'password',
-            'client_id' => 3, // client id frontend application
-            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
-            'username' => 'fabio@gmail.com', // seedered user
-            'password' => 'admin',
-            'scope' => ''
-        ];
+        $clientData = new ClientData();
+        $request = $clientData->getData();
 
         $response = $this->post('/oauth/token', $request);
         return json_decode($response->content(), true);
