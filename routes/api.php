@@ -16,14 +16,14 @@ use App\Http\Controllers\UserController;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return response()->json($request->user());
 });
 
-Route::prefix('users')->group(function(){
-    Route::middleware('auth:api')->post('/', [UserController::class, 'store']);
-    Route::middleware('auth:api')->get('/', [UserController::class, 'index']);
-    Route::middleware('auth:api')->put('{id}', [UserController::class, 'update']);
-    Route::middleware('auth:api')->get('{id}', [UserController::class, 'show']);
-    Route::middleware('auth:api')->delete('{id}', [UserController::class, 'destroy']);
+Route::middleware('auth:api')->prefix('users')->group(function(){
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/', [UserController::class, 'index']);
+    Route::put('{id}', [UserController::class, 'update']);
+    Route::get('{id}', [UserController::class, 'show']);
+    Route::delete('{id}', [UserController::class, 'destroy']);
 });
 

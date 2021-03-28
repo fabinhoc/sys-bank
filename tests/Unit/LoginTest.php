@@ -20,8 +20,8 @@ class LoginTest extends TestCase
     {
         $request = [
             'grant_type' => 'password',
-            'client_id' => 4, // client id frontend application
-            'client_secret' => 'sdZRbi8sgWX9kTakilmnKeYzKyHEr23hAL9oj8Xb', // secret frontend application
+            'client_id' => 3, // client id frontend application
+            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
             'username' => 'fabio@gmail.com', // seedered user
             'password' => 'admin',
             'scope' => ''
@@ -41,8 +41,8 @@ class LoginTest extends TestCase
         $resource = User::factory()->create()->toArray();
         $request = [
             'grant_type' => 'password',
-            'client_id' => 4, // client id frontend application
-            'client_secret' => 'sdZRbi8sgWX9kTakilmnKeYzKyHEr23hAL9oj8Xb', // secret frontend application
+            'client_id' => 3, // client id frontend application
+            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
             'username' => $resource['email'], // seedered user
             'password' => 'admin',
             'scope' => ''
@@ -72,8 +72,8 @@ class LoginTest extends TestCase
         $resource = User::factory()->create()->toArray();
         $request = [
             'grant_type' => 'password',
-            'client_id' => 4, // client id frontend application
-            'client_secret' => 'sdZRbi8sgWX9kTakilmnKeYzKyHEr23hAL9oj8Xb', // secret frontend application
+            'client_id' => 3, // client id frontend application
+            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
             'username' => $resource['email'], // seedered user
             'password' => 'admin',
             'scope' => ''
@@ -94,8 +94,8 @@ class LoginTest extends TestCase
         // AUTHENTICATION REQUEST
         $request = [
             'grant_type' => 'password',
-            'client_id' => 4, // client id frontend application
-            'client_secret' => 'sdZRbi8sgWX9kTakilmnKeYzKyHEr23hAL9oj8Xb', // secret frontend application
+            'client_id' => 3, // client id frontend application
+            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
             'username' => $user['email'], // seedered user
             'password' => 'admin', // created user password
             'scope' => ''

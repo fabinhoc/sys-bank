@@ -20,8 +20,8 @@ class UserTest extends TestCase
     {
         $request = [
             'grant_type' => 'password',
-            'client_id' => 4, // client id frontend application
-            'client_secret' => 'sdZRbi8sgWX9kTakilmnKeYzKyHEr23hAL9oj8Xb', // secret frontend application
+            'client_id' => 3, // client id frontend application
+            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
             'username' => 'fabio@gmail.com', // seedered user
             'password' => 'admin',
             'scope' => ''
