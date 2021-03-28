@@ -8,12 +8,12 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Auth;
 use Tests\Unit\ClientData;
 
-class ExpenseTest extends TestCase
+class DepositTest extends TestCase
 {
     use DatabaseTransactions;
 
     /**
-     * Athenticate user Fabio Cruz
+     * Athenticate user
      *
      * @return Array
      */
@@ -27,7 +27,7 @@ class ExpenseTest extends TestCase
     }
     
     /**
-     * EXPENSES CREATE
+     * DEPOSITS CREATE
      *
      * @return void
      */
@@ -44,14 +44,14 @@ class ExpenseTest extends TestCase
             'price' => 120.00,
             'user_id' => $resource['id']
         ];
-        $response = $this->post('/api/expenses', $data, ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->post('/api/deposits', $data, ['Authorization' => 'Bearer ' . $token]);
         $response
             ->assertStatus(200)
             ->assertJsonStructure(['name', 'price', 'user_id', 'updated_at', 'created_at', 'id']);
     }
     
     /**
-     * EXPENSE UPDATE
+     * DEPOSIT UPDATE
      *
      * @return void
      */
@@ -64,29 +64,29 @@ class ExpenseTest extends TestCase
         $response = $this->get('/api/user', ['Authorization' => 'Bearer ' . $token]);
         $userResource = json_decode($response->content(), true);
 
-        // REGISTER AN EXPENSE
+        // REGISTER AN DEPOSIT
         $data = [
             'name' => 'Conta de luz',
             'price' => 120.00,
             'user_id' => $userResource['id']
         ];
-        $response = $this->post('/api/expenses', $data, ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->post('/api/deposits', $data, ['Authorization' => 'Bearer ' . $token]);
         $resource = json_decode($response->content(), true);
         $id = $resource['id'];
 
-        // EDIT AN EXPENSE
+        // EDIT AN DEPOSIT
         $data = [
             'name' => 'Conta de luz 10/02',
             'price' => 120.00,
             'user_id' => $userResource['id']
         ];
-        $response = $this->put("/api/expenses/{$id}", $data, ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->put("/api/deposits/{$id}", $data, ['Authorization' => 'Bearer ' . $token]);
         $response
             ->assertStatus(200);
     }
 
     /**
-     * EXPENSES LIST
+     * DEPOSITS LIST
      *
      * @return void
      */
@@ -99,22 +99,22 @@ class ExpenseTest extends TestCase
         $response = $this->get('/api/user', ['Authorization' => 'Bearer ' . $token]);
         $userResource = json_decode($response->content(), true);
 
-        // REGISTER AN EXPENSE
+        // REGISTER AN DEPOSIT
         $data = [
             'name' => 'Conta de luz',
             'price' => 120.00,
             'user_id' => $userResource['id']
         ];
-        $response = $this->post('/api/expenses', $data, ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->post('/api/deposits', $data, ['Authorization' => 'Bearer ' . $token]);
 
-        $response = $this->get('/api/expenses', ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->get('/api/deposits', ['Authorization' => 'Bearer ' . $token]);
         $response
             ->assertStatus(200)
             ->assertJsonStructure(['*' => ['name', 'price', 'user_id', 'updated_at', 'user', 'created_at', 'id']]);
     }
 
     /**
-     * EXPENSES SHOW
+     * DEPOSITS SHOW
      *
      * @return void
      */
@@ -127,24 +127,24 @@ class ExpenseTest extends TestCase
         $response = $this->get('/api/user', ['Authorization' => 'Bearer ' . $token]);
         $userResource = json_decode($response->content(), true);
 
-        // REGISTER AN EXPENSE
+        // REGISTER AN DEPOSIT
         $data = [
             'name' => 'Conta de luz',
             'price' => 120.00,
             'user_id' => $userResource['id']
         ];
-        $response = $this->post('/api/expenses', $data, ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->post('/api/deposits', $data, ['Authorization' => 'Bearer ' . $token]);
         $resource = json_decode($response->content(), true);
         $id = $resource['id'];
         
-        $response = $this->get("/api/expenses/{$id}", ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->get("/api/deposits/{$id}", ['Authorization' => 'Bearer ' . $token]);
         $response
             ->assertStatus(200)
             ->assertJsonStructure(['id', 'name', 'price', 'user_id', 'user', 'created_at', 'updated_at']);
     }
 
     /**
-     * delete expense
+     * DELETE DEPOSIT
      *
      * @return void
      */
@@ -157,17 +157,17 @@ class ExpenseTest extends TestCase
         $response = $this->get('/api/user', ['Authorization' => 'Bearer ' . $token]);
         $userResource = json_decode($response->content(), true);
 
-        // REGISTER AN EXPENSE
+        // REGISTER AN DEPOSIT
         $data = [
-            'name' => 'Conta de luz',
+            'name' => 'DEPOSITO FREELA',
             'price' => 120.00,
             'user_id' => $userResource['id']
         ];
-        $response = $this->post('/api/expenses', $data, ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->post('/api/deposits', $data, ['Authorization' => 'Bearer ' . $token]);
         $resource = json_decode($response->content(), true);
         $id = $resource['id'];
         
-        $response = $this->delete("/api/expenses/{$id}", ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->delete("/api/deposits/{$id}", ['Authorization' => 'Bearer ' . $token]);
         $response->assertStatus(200);
     }
 }
