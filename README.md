@@ -1,5 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="100">
-<img src="https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/sys-bank.PNG" width="40">
+<img src="https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/sys-bank.PNG" width="100">
 </a></p>
 
 <p align="center">
@@ -44,7 +44,7 @@ $ ~/sys-bank/ docker-compose up -d
 ```
 Após executar esse comando, o seu terminal deverá retornar isso: 
 
-![image-docker-installed](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/docker-containers.png)
+![image-docker-installed](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/docker-containers.PNG)
 
 Execute o comando abaixo para baixar as dependências do projeto e instalar o Laravel Framework:
 ```
@@ -70,7 +70,7 @@ $ ~/sys-bank/ docker-compose exec php-fpm php artisan key:generate
 ```
 Acessar o link [http://localhost:8000](http://localhost:8000)
 
-![image-localhost](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/localhost.png)
+![image-localhost](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/localhost.PNG)
 
 Executar os seguintes comandos:
 
@@ -78,17 +78,17 @@ Executar os seguintes comandos:
 $ ~/sys-bank/ docker-compose exec php-fpm php artisan migrate
 ```
 
-![image-migrations](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/migrations.png)
+![image-migrations](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/migrations.PNG)
 
 ```
 $ ~/sys-bank/ docker-compose exec php-fpm php artisan passport:install
 ```
-![image-passport-install](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/passport-install.png)
+![image-passport-install](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/passport-install.PNG)
 
 ```
 $ ~/sys-bank/ docker-compose exec php-fpm php artisan passport:client --password
 ```
-![image-passport-client](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/passport-client.png)
+![image-passport-client](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/passport-client.PNG)
 
 **ATENÇÃO: Guarde as credencias que são exibidas após esse comando pois ela será utilizada para realizar nossos testes unitários e conectar nosso frontend com backend. CLIENT ID e CLIENT SECRET.**
 
@@ -96,7 +96,7 @@ Após isso executar o comando para gerar os seeds:
 ``` 
 $ ~/sys-bank/ docker-compose exec php-fpm php artisan db:seed
 ```
-![image-seeds](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/seeds.png)
+![image-seeds](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/seeds.PNG)
 
 alterar arquivo ``` sys-bank/tests/Unit/ClientData.php ```
 com as credenciais geradas pelo passport
@@ -116,7 +116,7 @@ Após isso ja podemos executar nossos testes unitários, para isso execute o com
 ```
 $ ~/sys-bank/ docker-compose exec php-fpm php artisan tests
 ```
-![image-tests](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/tests.png)
+![image-tests](https://github.com/fabinhoc/sys-bank/blob/main/storage/readme-images/tests.PNG)
 
 ## Frontend do projeto
 Acesse este repositório [https://github.com/fabinhoc/sys-bank-frontend](https://github.com/fabinhoc/sys-bank-frontend) para ter acesso ao frontend do projeto.
