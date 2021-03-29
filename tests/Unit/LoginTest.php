@@ -37,7 +37,6 @@ class LoginTest extends TestCase
 
         $clientData = new ClientData();
         $request = $clientData->getData();
-        $request['username'] = $resource['email'];
 
         $response = $this->post('/oauth/token', $request);
 
@@ -64,7 +63,6 @@ class LoginTest extends TestCase
         
         $clientData = new ClientData();
         $request = $clientData->getData();
-        $request['username'] = $resource['email'];
 
         $response = $this->post('/oauth/token', $request);
 
@@ -72,21 +70,18 @@ class LoginTest extends TestCase
         $data = [
             'name' => 'teste',
             'email' => 'teste@teste1.com',
-            'password' => 'admin'
+            'password' => 'adminPasss'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token['access_token']]);
 
         $user = json_decode($response->content(), true);
 
         // AUTHENTICATION REQUEST
-        $request = [
-            'grant_type' => 'password',
-            'client_id' => 3, // client id frontend application
-            'client_secret' => '3OStvYtflAnsZQd2ZKBePEilXHoNvbUfRsnO0Sjm', // secret frontend application
-            'username' => $user['email'], // seedered user
-            'password' => 'admin', // created user password
-            'scope' => ''
-        ];
+        $clientData = new ClientData();
+        $request = $clientData->getData();
+
+        $request['username'] = $user['email'];
+        $request['password'] = $data['password'];
 
         $response = $this->post('/oauth/token', $request);
         $response
