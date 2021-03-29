@@ -38,7 +38,7 @@ class UserTest extends TestCase
 
         $data = [
             'name' => 'teste',
-            'email' => 'teste@teste.com',
+            'email' => 'teste@teste1.com',
             'password' => 'admin'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token]);
@@ -75,7 +75,7 @@ class UserTest extends TestCase
 
         $data = [
             'name' => 'teste',
-            'email' => 'teste@teste.com',
+            'email' => 'teste@teste1.com',
             'password' => 'admin'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token]);
@@ -84,7 +84,7 @@ class UserTest extends TestCase
         
         $dataUpdate = [
             'name' => 'teste upadated',
-            'email' => 'teste@teste.com'
+            'email' => 'teste@teste1.com'
         ];
         $response = $this->put("/api/users/{$id}", $dataUpdate, ['Authorization' => 'Bearer ' . $token]);
         $response->assertStatus(200);
@@ -102,7 +102,7 @@ class UserTest extends TestCase
 
         $data = [
             'name' => 'teste',
-            'email' => 'teste@teste.com',
+            'email' => 'teste@teste1.com',
             'password' => 'admin'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token]);
@@ -127,7 +127,7 @@ class UserTest extends TestCase
 
         $data = [
             'name' => 'teste',
-            'email' => 'teste@teste.com',
+            'email' => 'teste@teste1.com',
             'password' => 'admin'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token]);

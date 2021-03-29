@@ -44,7 +44,7 @@ class LoginTest extends TestCase
         $token = json_decode($response->content(), true);
         $data = [
             'name' => 'teste',
-            'email' => 'teste@teste.com',
+            'email' => 'teste@teste1.com',
             'password' => 'admin'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token['access_token']]);
@@ -71,7 +71,7 @@ class LoginTest extends TestCase
         $token = json_decode($response->content(), true);
         $data = [
             'name' => 'teste',
-            'email' => 'teste@teste.com',
+            'email' => 'teste@teste1.com',
             'password' => 'admin'
         ];
         $response = $this->post('/api/users', $data, ['Authorization' => 'Bearer ' . $token['access_token']]);

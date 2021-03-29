@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\AccountServiceInterface;
 use App\Services\DepositServiceInterface;
+use App\Services\Eloquent\AccountService;
 use App\Services\Eloquent\DepositService;
 use App\Services\Eloquent\ExpenseService;
 use App\Services\Eloquent\UserService;
@@ -22,6 +24,7 @@ class ServiceServiceProvider extends ServiceProvider
         $this->app->bind(UserServiceInterface::class, UserService::class);
         $this->app->bind(DepositServiceInterface::class, DepositService::class);
         $this->app->bind(ExpenseServiceInterface::class, ExpenseService::class);
+        $this->app->bind(AccountServiceInterface::class, AccountService::class);
     }
 
     /**

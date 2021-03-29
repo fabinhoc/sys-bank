@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Http\Request;
@@ -44,5 +45,13 @@ Route::middleware('auth:api')->prefix('deposits')->group(function(){
     Route::put('{id}', [DepositController::class, 'update']);
     Route::get('{id}', [DepositController::class, 'show']);
     Route::delete('{id}', [DepositController::class, 'destroy']);
+});
+
+Route::middleware('auth:api')->prefix('accounts')->group(function(){
+    Route::post('/', [AccountController::class, 'store']);
+    Route::get('/', [AccountController::class, 'index']);
+    Route::put('{id}', [AccountController::class, 'update']);
+    Route::get('{id}', [AccountController::class, 'show']);
+    Route::delete('{id}', [AccountController::class, 'destroy']);
 });
 
