@@ -6,6 +6,7 @@ use App\Models\Expense;
 use App\Repository\ExpenseRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseRepository extends BaseRepository implements ExpenseRepositoryInterface
 {
@@ -22,7 +23,10 @@ class ExpenseRepository extends BaseRepository implements ExpenseRepositoryInter
 
     public function all(): Collection
     {
-        return $this->model::with('user')->orderBy('created_at', 'ASC')->get();
+        return $this->model::with('user')
+            ->where('user_id', '=', Auth::user()->id)
+            ->orderBy('created_at', 'ASC')
+            ->get();
     }
 
     public function find($id): ?Model

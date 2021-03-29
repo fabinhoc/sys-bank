@@ -5,6 +5,7 @@ use App\Http\Controllers\ExpenseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return response()->json($request->user());
+    return response()->json(Auth::user());
 });
 
 Route::middleware('auth:api')->prefix('users')->group(function(){
