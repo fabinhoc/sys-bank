@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return response()->json(Auth::user());
+    $user = Auth::user();
+    $user->account = Auth::user()->account;
+    return response()->json($user);
 });
 
 Route::middleware('auth:api')->prefix('users')->group(function(){

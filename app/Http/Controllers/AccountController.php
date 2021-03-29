@@ -9,35 +9,35 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    private $depositeService;
+    private $accountService;
 
-    public function __construct(AccountServiceInterface $depositeService)
+    public function __construct(AccountServiceInterface $accountService)
     {
-        $this->depositeService = $depositeService;    
+        $this->accountService = $accountService;    
     }
 
     public function store(StoreAccountRequest $request): JsonResponse
     {
-        return response()->json($this->depositeService->store($request));
+        return response()->json($this->accountService->store($request));
     }
 
     public function index(): JsonResponse
     {
-        return response()->json($this->depositeService->all());
+        return response()->json($this->accountService->all());
     }
 
     public function update(int $id, StoreAccountRequest $request): JsonResponse
     {
-        return response()->json($this->depositeService->update($id, $request));
+        return response()->json($this->accountService->update($id, $request));
     }
 
     public function show(int $id): JsonResponse
     {
-        return response()->json($this->depositeService->show($id));
+        return response()->json($this->accountService->show($id));
     }
 
     public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->depositeService->destroy($id));
+        return response()->json($this->accountService->destroy($id));
     }
 }
