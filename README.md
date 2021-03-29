@@ -1,4 +1,6 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="100">
+<img src="storage/readme-images/sys-bank.png" width="40">
+</a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,58 +9,114 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-![alt text](https://raw.githubusercontent.com/fabinhoc/sys-bank/main/storage/readme-images/localhost.png)
+<!-- ![alt text](storage/readme-images/localhost.png) -->
 
-## About Laravel
+## Pré-requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O projeto foi desenvolvido utilizando o [PHP 8.0](https://www.php.net/) com framework [Laravel 8.x.x](https://laravel.com/) e [Docker for Windows 20.10.5](https://www.docker.com/). Siga as instruções de instalação e os pré-requisitos para executar o projeto localmente na sua máquina.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Docker For Windows v20.10.5](https://www.docker.com/get-started)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Outros requisitos como **PHP**, **Composer**, **Postgres** serão provisionados através dos containers docker que serão criados.
 
-## Learning Laravel
+## Características do projeto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Boas práticas de clean code;
+- Desenvolvimento orientado à objetos;
+- Aplicado conceito de [SOLID](https://medium.com/desenvolvendo-com-paixao/o-que-%C3%A9-solid-o-guia-completo-para-voc%C3%AA-entender-os-5-princ%C3%ADpios-da-poo-2b937b3fc530);
+- Versionamento de banco de dados (migrations);
+- Dados pré-processados (Seeders);
+- REST Api;
+- Banco de dados [PostgresSQL](https://www.postgresql.org/)
+- [Laravel Passport](https://laravel.com/docs/8.x/passport) autenticação jwt.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalação
 
-## Laravel Sponsors
+Faça o clone do respositório do projeto:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+git clone https://github.com/fabinhoc/sys-bank
+```
+Entre na pasta do projeto clonado e execute o comando abaixo:
+```
+$ ~/ cd sys-bank
+$ ~/sys-bank/ docker-compose up -d
+```
+Após executar esse comando, o seu terminal deverá retornar isso: 
 
-### Premium Partners
+![image-docker-installed](storage/readme-images/docker-containers.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+Execute o comando abaixo para baixar as dependências do projeto e instalar o Laravel Framework:
+```
+$ ~/sys-bank/ docker-compose exec composer install
+```
+Após a instalação do projeto copiar o arquivo ``` .env.example ``` e renomear para ``` .env ```
 
-## Contributing
+Alterar variáveis de ambiente do arquivo ```.env ``` para acesso ao banco de dados:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+DB_CONNECTION=pgsql
+DB_HOST=postgres
+DB_PORT=5432
+DB_DATABASE=sys-bank
+DB_USERNAME=sys-bank
+DB_PASSWORD=sys-bank
+```
 
-## Code of Conduct
+Após isso executar o seguinte comando:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+$ ~/sys-bank/ docker-compose exec php-fpm php artisan key:generate
+```
+Acessar o link [http://localhost:8000](http://localhost:8000)
 
-## Security Vulnerabilities
+![image-localhost](storage/readme-images/localhost.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Executar os seguintes comandos:
 
-## License
+```
+$ ~/sys-bank/ docker-compose exec php-fpm php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![image-localhost](storage/readme-images/migrations.png)
+
+```
+$ ~/sys-bank/ docker-compose exec php-fpm php artisan passport:install
+```
+![image-localhost](storage/readme-images/passport-install.png)
+
+```
+$ ~/sys-bank/ docker-compose exec php-fpm php artisan passport:client --password
+```
+![image-localhost](storage/readme-images/passport-client.png)
+
+**ATENÇÃO: Guarde as credencias que são exibidas após esse comando pois ela será utilizada para realizar nossos testes unitários e conectar nosso frontend com backend. CLIENT ID e CLIENT SECRET.**
+
+Após isso executar o comando para gerar os seeds:
+``` 
+$ ~/sys-bank/ docker-compose exec php-fpm php artisan db:seed
+```
+![image-localhost](storage/readme-images/seeds.png)
+
+alterar arquivo ``` sys-bank/tests/Unit/ClientData.php ```
+com as credenciais geradas pelo passport
+
+```
+return [
+    'grant_type' => 'password',
+    'client_id' => SEU CLIENT ID,
+    'client_secret' => 'SEU CLIENT SECRET',
+    'username' => 'fabio@gmail.com', // USUARIO CRIADO PARA TESTES
+    'password' => 'admin',
+    'scope' => ''
+];
+```
+Após isso ja podemos executar nossos testes unitários, para isso execute o comando:
+
+```
+$ ~/sys-bank/ docker-compose exec php-fpm php artisan tests
+```
+![image-localhost](storage/readme-images/tests.png)
+
+## Frontend do projeto
+Acesse este repositório [https://github.com/fabinhoc/sys-bank-frontend](https://github.com/fabinhoc/sys-bank-frontend) para ter acesso ao frontend do projeto.
